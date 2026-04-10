@@ -24,10 +24,11 @@ public class CavazosExample {
 
       switch (input) {
         case "i":
-          System.out.println("Issue command not yet implemented.");
+          String issued = issueCommand(commandArray);
+          System.out.println("General Cavazos says: " + issued);
           break;
         case "l":
-          System.out.println(commandArray);
+          print(commandArray);
           break;
         case "u":
           System.out.println("Undo command not yet implemented.");
@@ -61,14 +62,10 @@ public class CavazosExample {
   }
 
   // randomly issue commands from General Cavazos
-  public static void randomCommand(String[] commandArray, int numCommand) {
+  public static String issueCommand(String[] commandArray) {
     Random rand = new Random();
-    System.out.printf("Number\tCommand\n");
-    System.out.printf("------\t---------------\n");
-    for (int i = 0; i < numCommand; i++) {
-      int randIndex = rand.nextInt(commandArray.length);
-      System.out.printf("%04d\t%s\n", i, commandArray[randIndex]);
-    }
+    int randIndex = rand.nextInt(commandArray.length);
+    return commandArray[randIndex];
   }
 
   // print command array
