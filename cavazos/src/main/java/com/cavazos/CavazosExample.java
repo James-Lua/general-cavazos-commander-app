@@ -2,6 +2,7 @@ package com.cavazos;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Stack;
 
 import org.json.simple.JSONArray;
 
@@ -15,6 +16,8 @@ public class CavazosExample {
     String[] commandArray = getCommandArray(commandJSONArray);
 
     Scanner scanner = new Scanner(System.in);
+    Stack<String> undoStack = new Stack<>();
+    Stack<String> redoStack = new Stack<>();
 
     boolean running = true;
     while (running) {
@@ -26,15 +29,29 @@ public class CavazosExample {
         case "i":
           String issued = issueCommand(commandArray);
           System.out.println("General Cavazos says: " + issued);
+          undoStack.push(issued);
+          redoStack.clear();
           break;
         case "l":
           print(commandArray);
           break;
         case "u":
-          System.out.println("Undo command not yet implemented.");
+          if (undoStack.isEmpty()) {
+            System.out.println("No commands to undo.");
+          } else {
+            String undone = undoStack.pop();
+            redoStack.push(undone);
+            System.out.println("Undone: " + undone);
+          }
           break;
         case "r":
-          System.out.println("Redo command not yet implemented.");
+          if (redoStack.isEmpty()) {
+            System.out.println("No commands to redo.");
+          } else {
+            String redone = redoStack.pop();
+            undoStack.push(redone);
+            System.out.println("Redone: " + redone);
+          }
           break;
         case "q":
           System.out.println("Goodbye!");
