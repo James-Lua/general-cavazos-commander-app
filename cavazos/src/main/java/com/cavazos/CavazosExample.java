@@ -1,28 +1,62 @@
 package com.cavazos;
 
 import java.util.Random;
+import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 
 public class CavazosExample {
 
   public static void main(String[] args) {
-    String fileName =
-      "cavazos/commands.json";
+    String fileName = "commands.json";
 
     // read commands
     JSONArray commandJSONArray = JSONFile.readArray(fileName);
     String[] commandArray = getCommandArray(commandJSONArray);
-    System.out.println(commandArray);
 
-    // print list of all commands
-    System.out.println("----- List of all commands -----");
-    print(commandArray);
+    Scanner scanner = new Scanner(System.in);
 
-    System.out.println(
-      "----- Issuing 5 random commands from General Cavazos -----"
-    );
-    randomCommand(commandArray, 5);
+    boolean running = true;
+    while (running) {
+      printMenu();
+      System.out.print("Enter command: ");
+      String input = scanner.nextLine().trim().toLowerCase();
+
+      switch (input) {
+        case "i":
+          System.out.println("Issue command not yet implemented.");
+          break;
+        case "l":
+          System.out.println("List command not yet implemented.");
+          break;
+        case "u":
+          System.out.println("Undo command not yet implemented.");
+          break;
+        case "r":
+          System.out.println("Redo command not yet implemented.");
+          break;
+        case "q":
+          System.out.println("Quit command not yet implemented.");
+          break;
+        default:
+          System.out.println("Invalid command. Please try again.");
+          break;
+      }
+      System.out.println();
+    }
+
+    scanner.close();
+  }
+
+  // print the menu
+  public static void printMenu() {
+    System.out.println("===== Cavazos Commander =====");
+    System.out.println("i - Issue a random command");
+    System.out.println("l - List all commands");
+    System.out.println("u - Undo last command");
+    System.out.println("r - Redo last command");
+    System.out.println("q - Quit");
+    System.out.println("=============================");
   }
 
   // randomly issue commands from General Cavazos
