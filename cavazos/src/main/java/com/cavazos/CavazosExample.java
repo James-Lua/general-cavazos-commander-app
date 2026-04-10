@@ -8,9 +8,9 @@ public class CavazosExample {
 
   public static void main(String[] args) {
     String fileName =
-      "/home/jams/Documents/GitHub/general-cavazos-commander-app/cavazos/commands.json";
+      "cavazos/commands.json";
 
-    // read coammands
+    // read commands
     JSONArray commandJSONArray = JSONFile.readArray(fileName);
     String[] commandArray = getCommandArray(commandJSONArray);
     System.out.println(commandArray);
