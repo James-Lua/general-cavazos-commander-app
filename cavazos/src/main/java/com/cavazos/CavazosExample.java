@@ -36,7 +36,8 @@ public class CavazosExample {
           System.out.println("Redo command not yet implemented.");
           break;
         case "q":
-          System.out.println("Quit command not yet implemented.");
+          System.out.println("Goodbye!");
+          running = false;
           break;
         default:
           System.out.println("Invalid command. Please try again.");
